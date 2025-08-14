@@ -8,53 +8,236 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
 <style>
-    /* Keep your existing CSS styles here (unchanged from your original) */
+:root {
+    --primary: #ff3b7c;
+    --secondary: #fff;
+    --muted: rgba(255,255,255,0.6);
+    font-family: 'Poppins', sans-serif;
+}
 
-    /* Compliment generator styles */
-    .compliment-box {
-        text-align: center;
-        padding: 20px;
-        background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
-        border-radius: 20px;
-        border: 1px solid rgba(255,255,255,.14);
-        position: relative;
-    }
-    .compliment-text {
-        font-size: 20px;
-        color: var(--secondary);
-        font-weight: 600;
-        min-height: 60px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    .compliment-btn {
-        margin-top: 14px;
-        padding: 10px 16px;
-        border-radius: 14px;
-        border: 1px solid rgba(255,255,255,.18);
-        background: linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.06));
-        color: white;
-        font-weight: 600;
-        cursor: pointer;
-        transition: .25s;
-    }
-    .compliment-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(255,59,124,.25);
-    }
+body {
+    margin: 0;
+    background: radial-gradient(circle at top, #2a2a2a, #1c1c1c);
+    color: var(--secondary);
+}
+
+/* Glows */
+.glow {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: 0.3;
+    z-index: -1;
+}
+.g1 {
+    width: 300px;
+    height: 300px;
+    background: var(--primary);
+    top: -50px;
+    left: -50px;
+}
+.g2 {
+    width: 300px;
+    height: 300px;
+    background: #ff8fb1;
+    bottom: -50px;
+    right: -50px;
+}
+
+/* Header */
+header {
+    text-align: center;
+    padding: 40px 20px;
+}
+.title {
+    font-family: 'Great Vibes', cursive;
+    font-size: 48px;
+    margin: 0;
+}
+.subtitle {
+    color: var(--muted);
+    margin: 10px 0 30px;
+}
+
+/* Grid */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+.card {
+    background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+    border-radius: 20px;
+    padding: 20px;
+    border: 1px solid rgba(255,255,255,.1);
+}
+.span12 {
+    grid-column: span 2;
+}
+
+/* Buttons */
+.cta {
+    padding: 10px 16px;
+    border-radius: 14px;
+    border: 1px solid rgba(255,255,255,.18);
+    background: var(--primary);
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .25s;
+}
+.cta:hover {
+    transform: translateY(-2px);
+}
+
+/* Timeline */
+.timeline {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.pill {
+    background: var(--primary);
+    padding: 6px 12px;
+    border-radius: 20px;
+    color: #fff;
+}
+
+/* Reasons flip cards */
+.reasons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.reason {
+    width: calc(33% - 6px);
+    aspect-ratio: 1;
+    background: var(--primary);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    perspective: 1000px;
+    position: relative;
+}
+.reason-inner {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+}
+.reason.flipped .reason-inner {
+    transform: rotateY(180deg);
+}
+.reason-front, .reason-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+}
+.reason-back {
+    transform: rotateY(180deg);
+    background: #ff8fb1;
+}
+
+/* Compliment box */
+.compliment-box {
+    text-align: center;
+    padding: 20px;
+    background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,.14);
+    position: relative;
+}
+.compliment-text {
+    font-size: 20px;
+    color: var(--secondary);
+    font-weight: 600;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.compliment-btn {
+    margin-top: 14px;
+    padding: 10px 16px;
+    border-radius: 14px;
+    border: 1px solid rgba(255,255,255,.18);
+    background: linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.06));
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .25s;
+}
+.compliment-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255,59,124,.25);
+}
+
+/* Flying heart animation */
+.flying-heart {
+    font-size: 20px;
+    position: absolute;
+    animation: fly-up 3s forwards;
+}
+@keyframes fly-up {
+    0% { transform: translateY(0) scale(1); opacity: 1; }
+    100% { transform: translateY(-150px) scale(1.5); opacity: 0; }
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    align-items: center;
+    justify-content: center;
+}
+.modal-card {
+    background: #2a2a2a;
+    padding: 20px;
+    border-radius: 12px;
+    max-width: 300px;
+    text-align: center;
+}
+.close {
+    margin-top: 12px;
+    padding: 8px 14px;
+    background: var(--primary);
+    border: none;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 14px;
+    color: var(--muted);
+}
 </style>
 </head>
 <body>
 
-<!-- ambient glows -->
 <div class="glow g1"></div>
 <div class="glow g2"></div>
 
 <header>
     <div class="hero">
         <h1 class="title">For My Forever Person</h1>
-        <svg class="big-heart" viewBox="0 0 32 29" xmlns="http://www.w3.org/2000/svg">
+        <svg class="big-heart" viewBox="0 0 32 29" xmlns="http://www.w3.org/2000/svg" width="80">
             <path fill="url(#grad)" d="M23.6,0C21.3,0,19.3,1.1,16,4.4C12.7,1.1,10.7,0,8.4,0C3.8,0,0,3.8,0,8.4c0,8.1,16,20.5,16,20.5S32,16.5,32,8.4C32,3.8,28.2,0,23.6,0z"/>
             <defs>
                 <linearGradient id="grad" x1="0" x2="1" y1="0" y2="1">
@@ -65,15 +248,14 @@
         </svg>
         <p class="subtitle">A tiny corner of the web to say: <strong>I love you</strong>—today, tomorrow, and always. ✨</p>
         <div style="display:flex; justify-content: center; gap:12px; flex-wrap: wrap;">
-            <button class="cta" id="surpriseBtn"><span class="pulse"></span> Tap for a little surprise</button>
-            <button class="cta" id="bauuaBtn"><span class="pulse"></span> Tap for more love! </button>
+            <button class="cta" id="surpriseBtn">💝 Tap for a little surprise</button>
+            <button class="cta" id="bauuaBtn">💖 Tap for more love!</button>
         </div>
     </div>
 </header>
 
 <main>
     <section class="grid">
-        <!-- Love letter -->
         <article class="card span6">
             <h2>Love Letter</h2>
             <p class="muted">Edit the text below with your own words.</p>
@@ -86,7 +268,6 @@ Every day with you feels like sunrise—soft, warm, and full of hope. Thank you 
             </div>
         </article>
 
-        <!-- Timeline -->
         <article class="card span6">
             <h2>Days of Us</h2>
             <p class="muted">Pick the day this beautiful story began. I’ll count the days for you.</p>
@@ -96,7 +277,6 @@ Every day with you feels like sunrise—soft, warm, and full of hope. Thank you 
             </div>
         </article>
 
-        <!-- Reasons -->
         <article class="card span6">
             <h2>Reasons I Love You</h2>
             <p class="muted">Click any card to flip & reveal more.</p>
@@ -110,7 +290,6 @@ Every day with you feels like sunrise—soft, warm, and full of hope. Thank you 
             </div>
         </article>
 
-        <!-- NEW Cute Compliment Generator -->
         <article class="card span6">
             <h2>Cute Little Surprises</h2>
             <p class="muted">Click below for a random lovely compliment 💌</p>
@@ -120,7 +299,6 @@ Every day with you feels like sunrise—soft, warm, and full of hope. Thank you 
             </div>
         </article>
 
-        <!-- Promise -->
         <article class="card span12">
             <h2>A Promise</h2>
             <p class="muted">I promise to love you loudly on good days, gently on hard days, and truly on all days.</p>
@@ -133,51 +311,71 @@ Every day with you feels like sunrise—soft, warm, and full of hope. Thank you 
     Made with ❤️ by Pulkit — <span style="color:#fff; opacity:.85">for my girl</span>
 </footer>
 
-<!-- Surprise modal -->
 <div class="modal" id="modal">
     <div class="modal-card">
-        <h2 style="margin:0 0 8px">You are my favorite everything 💘</h2>
-        <p style="margin:0; color:var(--muted)">Yes, I’m completely, beautifully, hopelessly into you.</p>
+        <h2>You are my favorite everything 💘</h2>
+        <p style="color:var(--muted)">Yes, I’m completely, beautifully, hopelessly into you.</p>
         <button class="close" id="closeModal">Close</button>
     </div>
 </div>
 
-<div id="dynamic-messages-container"></div>
-
 <script>
-    /* Keep your original JS code for hearts, modal, days counter, reasons, and love messages */
+const startDateInput = document.getElementById("startDate");
+const daysTogetherSpan = document.getElementById("daysTogether");
+function updateDaysTogether() {
+    const start = new Date(startDateInput.value);
+    const today = new Date();
+    const diff = Math.floor((today - start) / (1000*60*60*24));
+    daysTogetherSpan.textContent = diff >= 0 ? diff : "—";
+}
+startDateInput.addEventListener("change", updateDaysTogether);
+updateDaysTogether();
 
-    // Compliment Generator
-    const compliments = [
-        "You are the peanut butter to my jelly 🥰",
-        "If kisses were snowflakes, I’d send you a blizzard ❄️💋",
-        "You make my heart do the happy dance 💃❤️",
-        "You are my favorite daydream ☁️💖",
-        "Every love song makes sense because of you 🎶💕",
-        "If I had a flower for every time I thought of you, I could walk in my garden forever 🌸",
-        "You are the sprinkles on my cupcake 🧁✨",
-        "My heart beats faster just thinking about you 💓"
-    ];
+document.querySelectorAll(".reason").forEach(card => {
+    const front = document.createElement("div");
+    const back = document.createElement("div");
+    const inner = document.createElement("div");
+    front.className = "reason-front";
+    back.className = "reason-back";
+    inner.className = "reason-inner";
+    front.textContent = card.dataset.front;
+    back.textContent = card.dataset.back;
+    inner.appendChild(front);
+    inner.appendChild(back);
+    card.appendChild(inner);
+    card.addEventListener("click", () => card.classList.toggle("flipped"));
+});
+
+const compliments = [
+    "You are the peanut butter to my jelly 🥰",
+    "If kisses were snowflakes, I’d send you a blizzard ❄️💋",
+    "You make my heart do the happy dance 💃❤️",
+    "You are my favorite daydream ☁️💖",
+    "Every love song makes sense because of you 🎶💕",
+    "If I had a flower for every time I thought of you, I could walk in my garden forever 🌸",
+    "You are the sprinkles on my cupcake 🧁✨",
+    "My heart beats faster just thinking about you 💓"
+];
+document.getElementById("complimentBtn").addEventListener("click", () => {
     const complimentText = document.getElementById("complimentText");
-    const complimentBtn = document.getElementById("complimentBtn");
+    complimentText.textContent = compliments[Math.floor(Math.random() * compliments.length)];
+    for (let i = 0; i < 5; i++) {
+        const heart = document.createElement("div");
+        heart.className = "flying-heart";
+        heart.textContent = "💖";
+        heart.style.left = `${Math.random() * 200}px`;
+        heart.style.top = `0px`;
+        complimentText.parentElement.appendChild(heart);
+        heart.addEventListener("animationend", () => heart.remove());
+    }
+});
 
-    complimentBtn.addEventListener("click", () => {
-        const randomCompliment = compliments[Math.floor(Math.random() * compliments.length)];
-        complimentText.textContent = randomCompliment;
-        
-        // spawn some floating hearts for cuteness
-        for (let i = 0; i < 5; i++) {
-            const heart = document.createElement("div");
-            heart.className = "flying-heart";
-            heart.textContent = "💖";
-            heart.style.left = `${50 + Math.random() * 200}px`;
-            heart.style.top = `${200 + Math.random() * 50}px`;
-            heart.style.position = "absolute";
-            heart.style.animation = "fly-up 3s forwards";
-            complimentText.parentElement.appendChild(heart);
-            heart.addEventListener("animationend", () => heart.remove());
-        }
-    });
+document.getElementById("surpriseBtn").addEventListener("click", () => {
+    document.getElementById("modal").style.display = "flex";
+});
+document.getElementById("closeModal").addEventListener("click", () => {
+    document.getElementById("modal").style.display = "none";
+});
 </script>
 </body>
 </html>
