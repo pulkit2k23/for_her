@@ -1,412 +1,183 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>For My Love ❤️</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
-    <style>
-        :root{
-            --bg: #0f0a1f;
-            --bg2: #1a0b2e;
-            --primary: #ff3b7c;
-            --secondary: #ff8fb1;
-            --accent: #ffd1dc;
-            --card: rgba(255,255,255,0.08);
-            --glass: rgba(255,255,255,0.12);
-            --text: #f8f6ff;
-            --muted: #cbbde2;
-        }
-        *{box-sizing:border-box}
-        html,body{
-            margin:0;
-            padding:0;
-            font-family:Poppins, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, "Apple Color Emoji","Segoe UI Emoji";
-            background: radial-gradient(1200px 800px at 20% -10%, #432371 0%, #1a1036 35%, #0f0a1f 70%), radial-gradient(800px 800px at 120% 20%, #35155d 0%, #140b2c 60%);
-            color:var(--text);
-            overflow-x: hidden; /* Prevents horizontal scrolling on mobile */
-        }
-        body, #surpriseBtn, .cta, .reason{
-            touch-action: manipulation;
-        }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>For My Love ❤️</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+<style>
+    /* Keep your existing CSS styles here (unchanged from your original) */
 
-        /* Floating soft glows */
-        .glow{position:fixed; filter:blur(90px); opacity:.35; pointer-events:none; z-index:0}
-        .glow.g1{width:360px; height:360px; left:-60px; top:-60px; background:conic-gradient(from 120deg, #ff3b7c, #ff8fb1, #ffd1dc, #ff3b7c)}
-        .glow.g2{width:420px; height:420px; right:-100px; bottom:-100px; background:radial-gradient(circle at 30% 30%, #8a2be2, #35155d, transparent)}
-
-        header{position:relative; z-index:1; min-height:92vh; display:grid; place-items:center; text-align:center; padding:60px 20px}
-        .hero{
-            max-width: 900px;
-            width: 100%;
-            background: linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
-            border: 1px solid rgba(255,255,255,0.12);
-            border-radius: 28px;
-            backdrop-filter: blur(8px);
-            padding: 48px 28px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.35);
-        }
-        .title{
-            font-family: 'Great Vibes', cursive;
-            font-size: clamp(44px, 8vw, 86px);
-            margin: 0 0 10px;
-            color: var(--accent);
-            text-shadow: 0 2px 18px rgba(255,59,124,.25);
-        }
-        .subtitle{font-size: clamp(16px,3.2vw,20px); color:var(--muted); margin: 0 auto 24px; max-width: 760px}
-
-        .cta{display:inline-flex; align-items:center; justify-content: center; gap:12px; padding:14px 20px; border-radius: 16px; border:1px solid rgba(255,255,255,.18); background: linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.06)); color:white; text-decoration:none; font-weight:600; cursor:pointer; transition:.25s transform, .25s box-shadow}
-        .cta:hover{transform: translateY(-2px); box-shadow:0 8px 28px rgba(255,59,124,.25)}
-        .cta .pulse{width:12px; height:12px; border-radius:50%; background:var(--primary); box-shadow:0 0 0 0 rgba(255,59,124,.6); animation:pulse 1.8s infinite}
-        @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,59,124,.6)}70%{box-shadow:0 0 0 16px rgba(255,59,124,0)}100%{box-shadow:0 0 0 0 rgba(255,59,124,0)}}
-
-        /* Animated main heart */
-        .big-heart{width:min(220px, 40vw); height:auto; margin: 22px auto 32px; display:block; filter: drop-shadow(0 10px 24px rgba(255,59,124,.25)); animation: beat 1.8s ease-in-out infinite}
-        @keyframes beat{0%,100%{transform: scale(1)}30%{transform: scale(1.06)}60%{transform: scale(0.98)}}
-
-        main{position:relative; z-index:1; padding: 0 12px;}
-        .grid{display:grid; gap:24px; grid-template-columns: repeat(12, 1fr); padding: 12px 0 80px; max-width: 1100px; margin: 0 auto}
-        .card{grid-column: span 12; background:var(--card); border:1px solid rgba(255,255,255,.12); border-radius:22px; padding:22px; box-shadow: 0 6px 24px rgba(0,0,0,.25)}
-        @media (min-width: 860px){
-            .card.span6{grid-column: span 6}
-            .card.span4{grid-column: span 4}
-        }
-        .card h2{margin:2px 0 6px; font-size: 22px}
-        .muted{color:var(--muted); font-size:14px; margin:0 0 12px}
-
-        /* Love letter */
-        .letter{
-            white-space: pre-wrap;
-            line-height:1.75;
-            background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
-            border-radius:18px;
-            padding:16px;
-            border:1px solid rgba(255,255,255,.1);
-            min-height: 200px;
-        }
-
-        /* Gallery */
-        .gallery{display:grid; grid-template-columns: repeat(2,1fr); gap:12px}
-        @media(min-width:640px){.gallery{grid-template-columns: repeat(3,1fr)}}
-        .gallery img{width: 100%; height: 100%; object-fit: cover; border-radius: 18px; transition: transform .2s ease-in-out; cursor: pointer;}
-        .gallery img:hover{transform: scale(1.05);}
-
-        /* Timeline */
-        .timeline{display:flex; gap:14px; align-items:center; flex-wrap:wrap}
-        .timeline input{padding:10px 12px; border-radius:12px; background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.18); color:var(--text)}
-        .pill{padding:10px 14px; border-radius:999px; background:rgba(255,59,124,.16); border:1px solid rgba(255,59,124,.35); font-weight:600; white-space:nowrap}
-        
-        /* Reasons */
-        .reasons{display:grid; grid-template-columns: repeat(1,1fr); gap:12px}
-        @media(min-width:640px){.reasons{grid-template-columns: repeat(3,1fr)}}
-        .reason{position:relative; padding:16px; border-radius:18px; background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03)); border:1px solid rgba(255,255,255,.14); transition:.25s transform}
-        .reason:hover{transform: translateY(-3px)}
-
-        /* Footer */
-        footer{position:relative; z-index:1; text-align:center; padding:24px; color:#cbbde2; border-top:1px solid rgba(255,255,255,.08)}
-
-        /* Floating tiny hearts */
-        .heart{
-            position:fixed;
-            width:12px;
-            height:12px;
-            pointer-events:none;
-            transform: translate(-50%, -50%) rotate(45deg);
-        }
-        .heart::before, .heart::after{content:""; position:absolute; width:12px; height:12px; background:var(--primary); border-radius:50%}
-        .heart::before{left:-6px}
-        .heart::after{top:-6px}
-
-        /* Modal */
-        .modal{position: fixed; inset:0; display:none; place-items:center; background: rgba(5, 3, 16, 0.65); z-index: 50}
-        .modal.open{display:grid}
-        .modal-card{max-width:560px; margin:18px; background: linear-gradient(160deg, rgba(255,255,255,.12), rgba(255,255,255,.06)); border:1px solid rgba(255,255,255,.18); border-radius:24px; padding:26px; text-align:center; box-shadow:0 12px 40px rgba(0,0,0,.45)}
-        .close{margin-top:16px; border:none; padding:10px 14px; border-radius:12px; background:rgba(255,255,255,.18); color:var(--text); cursor:pointer}
-
-        /* New styles for dynamic messages */
-        #dynamic-messages-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            overflow: hidden;
-            z-index: 20;
-        }
-        .flying-message {
-            position: absolute;
-            font-size: 16px;
-            color: var(--secondary);
-            font-weight: 600;
-            animation: fly-up 5s forwards;
-            white-space: nowrap;
-        }
-        .flying-heart {
-            position: absolute;
-            font-size: 24px;
-            animation: fly-up 5s forwards;
-        }
-        @keyframes fly-up {
-            0% {
-                transform: translateY(0) scale(1) rotate(0deg);
-                opacity: 0;
-            }
-            20% {
-                opacity: 1;
-            }
-            80% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100vh) scale(1.5) rotate(15deg);
-                opacity: 0;
-            }
-        }
-    </style>
+    /* Compliment generator styles */
+    .compliment-box {
+        text-align: center;
+        padding: 20px;
+        background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+        border-radius: 20px;
+        border: 1px solid rgba(255,255,255,.14);
+        position: relative;
+    }
+    .compliment-text {
+        font-size: 20px;
+        color: var(--secondary);
+        font-weight: 600;
+        min-height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .compliment-btn {
+        margin-top: 14px;
+        padding: 10px 16px;
+        border-radius: 14px;
+        border: 1px solid rgba(255,255,255,.18);
+        background: linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.06));
+        color: white;
+        font-weight: 600;
+        cursor: pointer;
+        transition: .25s;
+    }
+    .compliment-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(255,59,124,.25);
+    }
+</style>
 </head>
 <body>
-    <!-- ambient glows -->
-    <div class="glow g1"></div>
-    <div class="glow g2"></div>
 
-    <header>
-        <div class="hero">
-            <h1 class="title">For My Forever Person</h1>
-            <svg class="big-heart" viewBox="0 0 32 29" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path fill="url(#grad)" d="M23.6,0C21.3,0,19.3,1.1,16,4.4C12.7,1.1,10.7,0,8.4,0C3.8,0,0,3.8,0,8.4c0,8.1,16,20.5,16,20.5S32,16.5,32,8.4C32,3.8,28.2,0,23.6,0z"/>
-                <defs>
-                    <linearGradient id="grad" x1="0" x2="1" y1="0" y2="1">
-                        <stop offset="0%" stop-color="#ff3b7c"/>
-                        <stop offset="100%" stop-color="#ff8fb1"/>
-                    </linearGradient>
-                </defs>
-            </svg>
-            <p class="subtitle">A tiny corner of the web to say: <strong>I love you</strong>—today, tomorrow, and always. ✨</p>
-            <div style="display:flex; justify-content: center; gap:12px; flex-wrap: wrap;">
-              <button class="cta" id="surpriseBtn"><span class="pulse"></span> Tap for a little surprise</button>
-              <button class="cta" id="bauuaBtn"><span class="pulse"></span> Tap for more love! </button>
-            </div>
+<!-- ambient glows -->
+<div class="glow g1"></div>
+<div class="glow g2"></div>
+
+<header>
+    <div class="hero">
+        <h1 class="title">For My Forever Person</h1>
+        <svg class="big-heart" viewBox="0 0 32 29" xmlns="http://www.w3.org/2000/svg">
+            <path fill="url(#grad)" d="M23.6,0C21.3,0,19.3,1.1,16,4.4C12.7,1.1,10.7,0,8.4,0C3.8,0,0,3.8,0,8.4c0,8.1,16,20.5,16,20.5S32,16.5,32,8.4C32,3.8,28.2,0,23.6,0z"/>
+            <defs>
+                <linearGradient id="grad" x1="0" x2="1" y1="0" y2="1">
+                    <stop offset="0%" stop-color="#ff3b7c"/>
+                    <stop offset="100%" stop-color="#ff8fb1"/>
+                </linearGradient>
+            </defs>
+        </svg>
+        <p class="subtitle">A tiny corner of the web to say: <strong>I love you</strong>—today, tomorrow, and always. ✨</p>
+        <div style="display:flex; justify-content: center; gap:12px; flex-wrap: wrap;">
+            <button class="cta" id="surpriseBtn"><span class="pulse"></span> Tap for a little surprise</button>
+            <button class="cta" id="bauuaBtn"><span class="pulse"></span> Tap for more love! </button>
         </div>
-    </header>
+    </div>
+</header>
 
-    <main>
-        <section class="grid">
-            <!-- Love letter -->
-            <article class="card span6">
-                <h2>Love Letter</h2>
-                <p class="muted">Edit the text below with your own words.</p>
-                <div class="letter" id="loveLetter" contenteditable="true">
+<main>
+    <section class="grid">
+        <!-- Love letter -->
+        <article class="card span6">
+            <h2>Love Letter</h2>
+            <p class="muted">Edit the text below with your own words.</p>
+            <div class="letter" id="loveLetter" contenteditable="true">
 Dear ❤️,
 
 Every day with you feels like sunrise—soft, warm, and full of hope. Thank you for your kindness, your laughter, and the way you make ordinary moments shine. I choose you. Always.
 
 — Pulkit
-                </div>
-            </article>
+            </div>
+        </article>
 
-            <!-- Timeline / Days together -->
-            <article class="card span6">
-                <h2>Days of Us</h2>
-                <p class="muted">Pick the day this beautiful story began. I’ll count the days for you.</p>
-                <div class="timeline">
-                    <input type="date" id="startDate" value="2024-02-14" />
-                    <span class="pill">Together for <span id="daysTogether">—</span> days</span>
-                </div>
-            </article>
+        <!-- Timeline -->
+        <article class="card span6">
+            <h2>Days of Us</h2>
+            <p class="muted">Pick the day this beautiful story began. I’ll count the days for you.</p>
+            <div class="timeline">
+                <input type="date" id="startDate" value="2024-02-14" />
+                <span class="pill">Together for <span id="daysTogether">—</span> days</span>
+            </div>
+        </article>
 
-            <!-- Reasons I love you -->
-            <article class="card span6">
-                <h2>Reasons I Love You</h2>
-                <p class="muted">Click any card to flip & reveal more.</p>
-                <div class="reasons" id="reasons">
-                    <div class="reason" data-front="Your Smile" data-back="It lights up even my cloudiest days."></div>
-                    <div class="reason" data-front="Your Kindness" data-back="You care deeply, and it shows in little things."></div>
-                    <div class="reason" data-front="Your Laugh" data-back="It’s my favorite sound."></div>
-                    <div class="reason" data-front="Your Support" data-back="You believe in me when I doubt myself."></div>
-                    <div class="reason" data-front="Your Eyes" data-back="Home, every time I look into them."></div>
-                    <div class="reason" data-front="Your Heart" data-back="Gentle, brave, and endlessly loving."></div>
-                </div>
-            </article>
+        <!-- Reasons -->
+        <article class="card span6">
+            <h2>Reasons I Love You</h2>
+            <p class="muted">Click any card to flip & reveal more.</p>
+            <div class="reasons" id="reasons">
+                <div class="reason" data-front="Your Smile" data-back="It lights up even my cloudiest days."></div>
+                <div class="reason" data-front="Your Kindness" data-back="You care deeply, and it shows in little things."></div>
+                <div class="reason" data-front="Your Laugh" data-back="It’s my favorite sound."></div>
+                <div class="reason" data-front="Your Support" data-back="You believe in me when I doubt myself."></div>
+                <div class="reason" data-front="Your Eyes" data-back="Home, every time I look into them."></div>
+                <div class="reason" data-front="Your Heart" data-back="Gentle, brave, and endlessly loving."></div>
+            </div>
+        </article>
 
-            <!-- Gallery placeholders -->
-            <article class="card span6">
-                <h2>Our Moments</h2>
-                <p class="muted">A few of our favorite memories. Click to see more!</p>
-                <div class="gallery" id="gallery">
-                    <img src="https://images.unsplash.com/photo-1549419139-f9c3f4a9b4d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Couple laughing together">
-                    <img src="https://images.unsplash.com/photo-1520625345753-43111b7a2d48?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Couple holding hands on a street">
-                    <img src="https://images.unsplash.com/photo-1542385150-136511b854e7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Couple in a field">
-                    <img src="https://images.unsplash.com/photo-1520973693245-c49b109e2518?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Couple walking on a beach">
-                    <img src="https://images.unsplash.com/photo-1549301297-b6732f7a0799?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Couple hugging">
-                    <img src="https://images.unsplash.com/photo-1550974577-80f08149f1ae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Couple at a sunset">
-                </div>
-            </article>
+        <!-- NEW Cute Compliment Generator -->
+        <article class="card span6">
+            <h2>Cute Little Surprises</h2>
+            <p class="muted">Click below for a random lovely compliment 💌</p>
+            <div class="compliment-box">
+                <div class="compliment-text" id="complimentText">You are already my favorite notification ❤️</div>
+                <button class="compliment-btn" id="complimentBtn">Give me more sweetness!</button>
+            </div>
+        </article>
 
-            <!-- Contact / CTA -->
-            <article class="card span12">
-                <h2>A Promise</h2>
-                <p class="muted">I promise to love you loudly on good days, gently on hard days, and truly on all days.</p>
-                <a class="cta" href="mailto:her-email@example.com?subject=From%20Pulkit%20with%20Love&body=I%20love%20you%20so%20much!%20%F0%9F%92%95">Send You a Love Note</a>
-            </article>
-        </section>
-    </main>
+        <!-- Promise -->
+        <article class="card span12">
+            <h2>A Promise</h2>
+            <p class="muted">I promise to love you loudly on good days, gently on hard days, and truly on all days.</p>
+            <a class="cta" href="mailto:her-email@example.com?subject=From%20Pulkit%20with%20Love&body=I%20love%20you%20so%20much!%20%F0%9F%92%95">Send You a Love Note</a>
+        </article>
+    </section>
+</main>
 
-    <footer>
-        Made with ❤️ by Pulkit — <span style="color:#fff; opacity:.85">for my girl</span>
-    </footer>
+<footer>
+    Made with ❤️ by Pulkit — <span style="color:#fff; opacity:.85">for my girl</span>
+</footer>
 
-    <!-- Surprise modal -->
-    <div class="modal" id="modal">
-        <div class="modal-card">
-            <h2 style="margin:0 0 8px">You are my favorite everything 💘</h2>
-            <p style="margin:0; color:var(--muted)">Yes, I’m completely, beautifully, hopelessly into you.</p>
-            <button class="close" id="closeModal">Close</button>
-        </div>
+<!-- Surprise modal -->
+<div class="modal" id="modal">
+    <div class="modal-card">
+        <h2 style="margin:0 0 8px">You are my favorite everything 💘</h2>
+        <p style="margin:0; color:var(--muted)">Yes, I’m completely, beautifully, hopelessly into you.</p>
+        <button class="close" id="closeModal">Close</button>
     </div>
+</div>
 
-    <!-- Container for dynamic messages -->
-    <div id="dynamic-messages-container"></div>
+<div id="dynamic-messages-container"></div>
 
-    <script>
-        // --- Floating hearts on click ---
-        const spawnHeart = (x, y) => {
-            const h = document.createElement('div');
-            h.className = 'heart';
-            h.style.left = x + 'px';
-            h.style.top = y + 'px';
-            const size = 8 + Math.random()*18;
-            h.style.width = size + 'px';
-            h.style.height = size + 'px';
-            const rot = Math.random()*60 - 30;
-            h.style.transform += ` rotate(${rot}deg)`;
-            document.body.appendChild(h);
-            const dx = (Math.random() - 0.5) * 120;
-            const dy = - (80 + Math.random()*160);
-            const dur = 1000 + Math.random()*1200;
-            const start = Date.now();
-            const x0 = x, y0 = y;
-            const anim = () => {
-                const t = (Date.now()-start) / dur;
-                if (t >= 1){ h.remove(); return; }
-                const ease = t<.5 ? 2*t*t : -1+(4-2*t)*t; // ease in-out quad
-                h.style.left = x0 + dx*ease + 'px';
-                h.style.top  = y0 + dy*ease + 'px';
-                h.style.opacity = 1 - t;
-                requestAnimationFrame(anim);
-            };
-            requestAnimationFrame(anim);
-        };
+<script>
+    /* Keep your original JS code for hearts, modal, days counter, reasons, and love messages */
 
-        document.addEventListener('click', (e) => {
-            if (!document.getElementById('modal').classList.contains('open')) {
-                for(let i=0;i<6;i++) spawnHeart(e.clientX, e.clientY);
-            }
-        });
+    // Compliment Generator
+    const compliments = [
+        "You are the peanut butter to my jelly 🥰",
+        "If kisses were snowflakes, I’d send you a blizzard ❄️💋",
+        "You make my heart do the happy dance 💃❤️",
+        "You are my favorite daydream ☁️💖",
+        "Every love song makes sense because of you 🎶💕",
+        "If I had a flower for every time I thought of you, I could walk in my garden forever 🌸",
+        "You are the sprinkles on my cupcake 🧁✨",
+        "My heart beats faster just thinking about you 💓"
+    ];
+    const complimentText = document.getElementById("complimentText");
+    const complimentBtn = document.getElementById("complimentBtn");
 
-        // --- Surprise modal ---
-        const modal = document.getElementById('modal');
-        document.getElementById('surpriseBtn').addEventListener('click', () => {
-            modal.classList.add('open');
-            // burst of hearts from button
-            const rect = event.target.getBoundingClientRect();
-            const cx = rect.left + rect.width/2;
-            const cy = rect.top + rect.height/2;
-            for(let i=0;i<16;i++) spawnHeart(cx, cy);
-        });
-        document.getElementById('closeModal').addEventListener('click', ()=> modal.classList.remove('open'));
-
-        // --- Days together counter ---
-        const startDate = document.getElementById('startDate');
-        const daysTogether = document.getElementById('daysTogether');
-        function updateDays(){
-            const d = new Date(startDate.value);
-            if(!isNaN(d)){
-                const now = new Date();
-                const diff = Math.floor((now - d) / (1000*60*60*24));
-                daysTogether.textContent = Math.max(0, diff);
-            } else {
-                daysTogether.textContent = '—';
-            }
+    complimentBtn.addEventListener("click", () => {
+        const randomCompliment = compliments[Math.floor(Math.random() * compliments.length)];
+        complimentText.textContent = randomCompliment;
+        
+        // spawn some floating hearts for cuteness
+        for (let i = 0; i < 5; i++) {
+            const heart = document.createElement("div");
+            heart.className = "flying-heart";
+            heart.textContent = "💖";
+            heart.style.left = `${50 + Math.random() * 200}px`;
+            heart.style.top = `${200 + Math.random() * 50}px`;
+            heart.style.position = "absolute";
+            heart.style.animation = "fly-up 3s forwards";
+            complimentText.parentElement.appendChild(heart);
+            heart.addEventListener("animationend", () => heart.remove());
         }
-        startDate.addEventListener('change', updateDays);
-        updateDays();
-
-        // --- Reasons flip cards ---
-        const reasons = document.getElementById('reasons');
-        reasons.querySelectorAll('.reason').forEach(el => {
-            const front = el.getAttribute('data-front');
-            const back = el.getAttribute('data-back');
-            el.innerHTML = `<div class="face face-front">${front} 💖</div><div class="face face-back">${back}</div>`;
-            el.style.transformStyle = 'preserve-3d';
-            el.style.perspective = '800px';
-            el.querySelectorAll('.face').forEach(f => {
-                f.style.position='absolute';
-                f.style.inset='0';
-                f.style.display='grid';
-                f.style.placeItems='center';
-                f.style.backfaceVisibility='hidden';
-                f.style.borderRadius='18px';
-                f.style.padding='14px';
-                f.style.transition='transform 0.6s';
-            });
-            el.querySelector('.face-front').style.background = 'linear-gradient(180deg, rgba(255,255,255,.1), rgba(255,255,255,.04))';
-            el.querySelector('.face-back').style.transform = 'rotateY(180deg)';
-            el.addEventListener('click', ()=>{
-                const flipped = el.getAttribute('data-flipped')==='1';
-                el.style.transform = flipped ? 'rotateY(0deg)' : 'rotateY(180deg)';
-                el.setAttribute('data-flipped', flipped?'0':'1');
-            })
-        })
-
-        // --- Dynamic "love you bauua" messages ---
-        const bauuaBtn = document.getElementById('bauuaBtn');
-        const messagesContainer = document.getElementById('dynamic-messages-container');
-        const loveMessages = [
-            "Love you, Bauua! ❤️",
-            "You are my everything! 🥰",
-            "My heart is yours! 💖",
-            "You're the best! ✨",
-            "Always thinking of you! �",
-            "Love you more than words! 💕",
-            "Forever yours! 😘",
-        ];
-
-        bauuaBtn.addEventListener('click', () => {
-            // Get button position for spawning point
-            const rect = bauuaBtn.getBoundingClientRect();
-            const spawnX = rect.left + rect.width / 2;
-            const spawnY = rect.top + rect.height / 2;
-            
-            // Create multiple messages and hearts
-            for (let i = 0; i < 15; i++) {
-                setTimeout(() => {
-                    // Spawn a random message
-                    const msgEl = document.createElement('div');
-                    msgEl.className = 'flying-message';
-                    msgEl.textContent = loveMessages[Math.floor(Math.random() * loveMessages.length)];
-                    msgEl.style.left = `${spawnX + (Math.random() - 0.5) * 100}px`;
-                    msgEl.style.top = `${spawnY}px`;
-                    messagesContainer.appendChild(msgEl);
-                    msgEl.style.animationDuration = `${3 + Math.random() * 2}s`;
-                    msgEl.addEventListener('animationend', () => msgEl.remove());
-
-                    // Spawn a heart emoji
-                    const heartEl = document.createElement('div');
-                    heartEl.className = 'flying-heart';
-                    heartEl.textContent = '💖';
-                    heartEl.style.left = `${spawnX + (Math.random() - 0.5) * 150}px`;
-                    heartEl.style.top = `${spawnY}px`;
-                    messagesContainer.appendChild(heartEl);
-                    heartEl.style.animationDuration = `${3 + Math.random() * 2}s`;
-                    heartEl.style.animationDelay = `${Math.random() * 0.5}s`;
-                    heartEl.addEventListener('animationend', () => heartEl.remove());
-                }, i * 100); // Stagger the creation for a shower effect
-            }
-        });
-    </script>
+    });
+</script>
 </body>
 </html>
-�
